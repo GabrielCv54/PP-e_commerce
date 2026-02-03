@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export default async function CartPage(){
     try{
-        
+       // const cartProducts = localStorage.getItem('produtos' || '[]')
 
     return (
     <>
