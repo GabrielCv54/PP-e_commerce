@@ -10,7 +10,8 @@ export default function Products({ firstProduct}){
      const router = useRouter();
      const [edit, setEdit] = useState(false)
      const [editError,setEditError] = useState(null)
-     const[cart,setCart] = useState([]) // O array do carrinho
+    const [prod,setProd] = useState({'nome':"",'preco':'','img':""}) // dicionário que armazena cada produto
+    const[cart,setCart] = useState([]) // O array do carrinho
 
 
 
@@ -61,7 +62,7 @@ const handleDelete = async() => {
     }
 }
 
-function addCart(){
+const addCart = () =>{
     try{
        const cart = JSON.parse(localStorage.getItem("produto")||'[]')
        cart.push(prod)
@@ -117,7 +118,7 @@ return (
                 Atualizar💾
             </button>
       
-        <button onClick={() => addCart()} className="bg-blue-300  rounded-lg w-20 h-14 hover:border-solid hover:border-gray-700" id='cart'>
+        <button onClick={(prod) => addCart(prod.id)} className="bg-blue-300  rounded-lg w-20 h-14 hover:border-solid hover:border-gray-700" id='cart'>
           Ad.Carrinho🛒
          </button>
         </div>
