@@ -30,15 +30,6 @@ export default function Cart({productsAdded}){
 
     }
 
-    function handleAddCart(productClick){
-        const currentCart = JSON.parse(localStorage.getItem('produto') ||'[]')
-
-        currentCart.push(productClick)
-
-        localStorage.setItem('produto',JSON.stringify(currentCart))
-        window.alert("Produto adicionado!!")
-}
-
     function handleDeleteProdCart(){
        // para retirar o produto do carrinho
 
@@ -62,10 +53,10 @@ export default function Cart({productsAdded}){
              { cart.length >= 0 ?
              cart.map((item) => (
         
-                <tr>
+                <tr key={item.id}>
                     <td>{item.nome}</td>
                     <td>{item.preco}</td>
-                    <td>{item.img}</td>
+                    <td><img src={item.img} alt="img"></img></td>
                 </tr> ))
                 :
                
