@@ -62,8 +62,8 @@ async function handleCreate(data){
             </article><br /><br />
 
 
-            <div className="grid-cols-1 space-y-6 md:flex md:space-x-28 ">
-                <div className=' bg-black w-100 p-5'>
+            <div className="grid-cols-1 space-y-6 md:flex md:space-x-28 flex-wrap sm:items-center">
+                <div className=' bg-black w-80 p-5'>
                      <h3 className="text-2xl font-bold">Em destaque em Moda</h3>
                     <article  id="cath" className=" gap-4">
                       <img src="/destaque_moda_listrada.jpg" alt="camisa_listrada" />
