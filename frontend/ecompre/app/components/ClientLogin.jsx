@@ -21,7 +21,6 @@ export default function Login({ clientLogged }){
 
         clientLogged(client)
         
-        //loginP(client.user)
         
         setClient({"user":"","senha":""})
     }
