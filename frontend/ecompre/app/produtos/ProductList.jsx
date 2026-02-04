@@ -64,8 +64,8 @@ const handleDelete = async() => {
 
 const addCart = () =>{
     try{
-       const cart = JSON.parse(localStorage.getItem("produto")||'[]')
-       cart.push(prod)
+        const cart = JSON.parse(localStorage.getItem("produto")||'[]')
+        cart.push({"nome" : product.nome,'preco':product.preco,'img':product.img})
         localStorage.setItem("produto",JSON.stringify(cart))
         window.alert('Produto adicionado com sucesso!')
         
