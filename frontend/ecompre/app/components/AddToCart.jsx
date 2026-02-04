@@ -1,6 +1,5 @@
 'use client'
 import { useEffect, useState } from "react"
-import { getProductId } from "@/lib/api"
 import { useRouter } from "next/navigation"
 
 export default function Cart({productsAdded}){
@@ -19,14 +18,10 @@ export default function Cart({productsAdded}){
 
     }
 
-    {  /*const handleProductsAdd = async() => { 
-       const response =  await getProductId(product.id)
-    }*/}
-
     function handleFinishBuy(){
        setIsFinish(true)
        window.alert("Compra indo para o pagamento")
-       router.push('/produtos')
+       //router.push('/produtos')
 
     }
 
@@ -43,9 +38,9 @@ export default function Cart({productsAdded}){
 
     return(
         <>
-         <table className="bg-cyan-300">
+         <table className="bg-cyan-500 text-center">
             <tbody>
-                <tr className="space-x-6" key={product.id}>
+                <tr className="space-x-6 text-black" key={product.id}>
                     <th>Produto</th>
                     <th>Preço</th>
                     <th>Imagem do produto</th>
@@ -53,7 +48,7 @@ export default function Cart({productsAdded}){
              { cart.length >= 0 ?
              cart.map((item) => (
         
-                <tr key={item.id}>
+                <tr key={item.id} className="text-black">
                     <td>{item.nome}</td>
                     <td>{item.preco}</td>
                     <td><img src={item.img} alt="img"></img></td>
@@ -70,7 +65,7 @@ export default function Cart({productsAdded}){
          
          </tbody>
          
-         </table>
+         </table><br />
 
     
            {isFinish ? (
@@ -83,7 +78,7 @@ export default function Cart({productsAdded}){
                     <option value="Cheque">Cheque</option>
                 </select>
 
-                <button className="">Finalizar</button>
+                <button className="bg-sky-600 text-white p-2 rounded-lg">Finalizar</button>
             </form>
         ) : (
              <button className="bg-blue-500 p-3 hover:border-solid hover:border-blue-950" onClick={handleFinishBuy}>Concluir compra</button>
