@@ -3,9 +3,9 @@ import { useRouter } from "next/navigation";
 import Login from "@/app/components/ClientLogin";
 import { loginClients } from "@/lib/api";
 
-export default function Sign(p_text){
+export default function Sign(){
+    const login = useState()
     const router =  useRouter();
-    const P_login = `${p_text}`
 
     async function handleLogin(client){
         try{
