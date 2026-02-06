@@ -1,13 +1,14 @@
 from flask_cors import CORS
-from flask import Blueprint, request, redirect,jsonify,url_for
+from flask import Blueprint, request, session,jsonify,flash
 from models.modelCliente import Cliente
 import bcrypt
 from config import db
 from datetime import datetime
-
+import os
 
 cliente_blueprint = Blueprint('cliente_bp',__name__,url_prefix='/ecompre')
 CORS(cliente_blueprint)
+os.environ['admin_passw'] = 'admin_passw'
 
 @cliente_blueprint.route('/clientes',methods=["GET"])
 def returnAllClients():
@@ -19,7 +20,7 @@ def returnClient(id):
     try:
         client = Cliente.query.get(id)
         return client.dici()
-    except ClientNotFound:
+    except Exception:
         return jsonify({'Erro':"não foi encontrado o cliente"}),404
     
 
@@ -28,12 +29,27 @@ def login():
     try:
         data = request.json
         user = data.get('user')
-        password = data.get('senha')
-
+        password = data.get('senha')     
+        passw = bcrypt.hashpw(password.encode('utf-8'),bcrypt.gensalt())
+        env_admin_passw = os.environ.get('admin_passw').encode('utf-8')
+        if env_admin_passw:
+            admin_passw = bcrypt.hashpw(env_admin_passw,bcrypt.gensalt()).decode('utf-8')
+        else:
+            admin_passw = passw
         client_username = Cliente.query.filter_by(user=user).first()
-        if client_username  and bcrypt.checkpw(password.encode('utf-8'), client_username.senha.encode('utf-8')):
-          return jsonify({"sucesso":"indo para á pagina principal"}),200
-       
+
+        if client_username  and bcrypt.checkpw(password.encode('utf-8'), client_username.senha.encode('utf-8')) :
+          flash('Indo para a página principal!!')
+          return jsonify({"sucesso":"indo para á pagina principal"}),200   
+        
+        elif user == 'admin' and bcrypt.checkpw(password == admin_passw):
+          session['logged_in'] = True
+          session['is_admin'] = True
+          session['user'] = user
+          
+          flash('Administrador logado com sucesso!!')
+          return jsonify({'Sucesso':'Administrador logado com sucesso!!'}),200
+             
         return jsonify({'erro':"credenciais inválidas"}),401
     except Exception as err:
         return jsonify({'erro':f'problemas no servidor {str(err)}'}),500
