@@ -4,7 +4,6 @@ import Login from "@/app/components/ClientLogin";
 import { loginClients } from "@/lib/api";
 
 export default function Sign(){
-    const login = useState()
     const router =  useRouter();
 
     async function handleLogin(client){
