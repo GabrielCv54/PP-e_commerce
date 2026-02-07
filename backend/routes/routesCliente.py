@@ -31,22 +31,27 @@ def login():
         user = data.get('user')
         password = data.get('senha')     
         passw = bcrypt.hashpw(password.encode('utf-8'),bcrypt.gensalt())
-        env_admin_passw = os.environ.get('admin_passw').encode('utf-8')
+
+        env_admin_user = "admin" 
+        env_admin_passw = 'admin_passw'.encode('utf-8')
         if env_admin_passw:
             admin_passw = bcrypt.hashpw(env_admin_passw,bcrypt.gensalt()).decode('utf-8')
         else:
             admin_passw = passw
+
         client_username = Cliente.query.filter_by(user=user).first()
 
-        if client_username  and bcrypt.checkpw(password.encode('utf-8'), client_username.senha.encode('utf-8')) :
+        if client_username and bcrypt.checkpw(password.encode('utf-8'), client_username.senha.encode('utf-8')) :
+          session['logged_in'] = True
+          session['is_admin'] = False
+          session['user'] = user
           flash('Indo para a página principal!!')
           return jsonify({"sucesso":"indo para á pagina principal"}),200   
         
-        elif user == 'admin' and bcrypt.checkpw(password == admin_passw):
+        elif user == env_admin_user and bcrypt.checkpw(password.encode('utf-8') , admin_passw.encode('utf-8')):
           session['logged_in'] = True
           session['is_admin'] = True
           session['user'] = user
-          
           flash('Administrador logado com sucesso!!')
           return jsonify({'Sucesso':'Administrador logado com sucesso!!'}),200
              
