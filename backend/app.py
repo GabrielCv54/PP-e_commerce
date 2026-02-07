@@ -2,6 +2,7 @@ from config import db, app_config
 from flask import Flask
 from routes.routesProduto import produto_blueprint
 from routes.routesCliente import cliente_blueprint
+from routes.routesFornecedor import fornec_blueprint
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -10,6 +11,7 @@ CORS(app,resources={r"/*": { 'origins':'http://localhost:3000'}},supports_creden
 
 app.register_blueprint(produto_blueprint)
 app.register_blueprint(cliente_blueprint)
+app.register_blueprint(fornec_blueprint)
 
 if __name__ == '__main__':
     with app.app_context():
