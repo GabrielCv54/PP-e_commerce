@@ -1,6 +1,6 @@
 'use client' // indica que faz parte do Client Component
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { deleteProduct, putProduct } from "@/lib/api";
 import addCart from '@/app/components/AddToCart'
@@ -12,9 +12,7 @@ export default function Products({ firstProduct}){
      const [editError,setEditError] = useState(null)
     const [prod,setProd] = useState({'nome':"",'preco':'','img':""}) // dicionário que armazena cada produto
     const[cart,setCart] = useState([]) // O array do carrinho
-    const username = useState('user')
-    const password = useState('senha')
-
+    const [isAdmin ,setIsAdmin]= useState(false)
 
 
     if(!product){
@@ -84,6 +82,13 @@ if(product.length === 0){
 
 }
 
+useEffect(() => {
+    const username = localStorage.getItem('nome de usuário')
+    if(username === 'admin'){
+        setIsAdmin(true);
+    }
+})
+
 if(edit){
    return (
     <form className="bg-blue-400 p-4" key={product.id} id="form" onSubmit={handleEdit}>
@@ -116,12 +121,12 @@ return (
         <p id="setor" name="setor" >{product.setor}</p>
         <img src={product.img} alt="img_produto" name="img" className="p-7 rounded-lg"/><br />
         <div className="flex items-start gap-2 flex-wrap w-full p-2">
-            {username == 'admin' || password == 'admin_passw' ?
+            {isAdmin ?
             <button onClick={() => setEdit(true)} className="bg-green-500 w-25 h-14 rounded-lg hover:border-green-800" id="update">
                 Atualizar💾
             </button>
       :
-        <button onClick={(prod) => addCart(prod.id)} className="bg-blue-300  rounded-lg w-20 h-14 hover:border-solid hover:border-gray-700" id='cart'>
+        <button onClick={() => addCart()} className="bg-blue-300  rounded-lg w-20 h-14 hover:border-solid hover:border-gray-700" id='cart'>
           Ad.Carrinho🛒
          </button>
 }
