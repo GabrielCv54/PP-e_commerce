@@ -7,7 +7,7 @@ export default async function CartPage(){
 
     return (
     <>
-        <Link href="/produtos"><img src="/logo_ecompre.png" alt="" className='w-45 h-40'/></Link>
+        <Link href="/produtos"><img src="/logo_ecompre.png" alt="logo" className='w-45 h-40'/></Link>
         
         <Cart />
     </>
