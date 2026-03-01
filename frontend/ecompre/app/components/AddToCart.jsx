@@ -8,16 +8,6 @@ export default function Cart({productsAdded}){
     const router = useRouter()
     const[cart,setCart] = useState([]) // O array do carrinho
 
-    function handleChange(e){
-        const {name,value} = e.target;
-
-        setProduct(prev =>({
-            ...prev,
-            [name]: value
-        }))
-
-    }
-
     function handleFinishBuy(){
        setIsFinish(true)
        window.alert("Compra indo para o pagamento")
@@ -25,9 +15,10 @@ export default function Cart({productsAdded}){
 
     }
 
-    function handleDeleteProdCart(){
-       // para retirar o produto do carrinho
-
+    function handleFinalBuy(){
+       localStorage.removeItem('produto',[])
+       alert("Compra confirmada✅!! Voltando para página principal!!")
+        router.push('/produtos')
     }
 
     
@@ -35,6 +26,9 @@ export default function Cart({productsAdded}){
     const cartItems = JSON.parse(localStorage.getItem('produto') || '[]')
     setCart(cartItems)
   },[])
+
+  const totalValue = cart.reduce((acc, product) =>{ 
+    return acc + Number(product.preco)}, 0)
 
     return(
         <>
@@ -48,7 +42,7 @@ export default function Cart({productsAdded}){
              { cart.length >= 0 ?
              cart.map((item) => (
         
-                <tr key={item.id} className="text-black">
+                <tr className="text-black">
                     <td>{item.nome}</td>
                     <td>{item.preco}</td>
                     <td><img src={item.img} alt="img"></img></td>
@@ -71,14 +65,15 @@ export default function Cart({productsAdded}){
            {isFinish ? (
             <form className="bg-white text-gray-700">
                 <label>Valor do produto</label><br />
+                <label>{totalValue}</label><br />
                 <label>Qual forma de pagamento</label><br />
-                <select name="" id="">
-                    <option value="Cartão">Cartão(crédito/débito)</option>
+                <select name="types_pay" id="types_pay">
+                    <option value="Cartão">Cartão(Crédito/Débito)</option>
                     <option value="Pix">Pix</option>
                     <option value="Cheque">Cheque</option>
                 </select>
 
-                <button className="bg-sky-600 text-white p-2 rounded-lg">Finalizar</button>
+                <button className="bg-sky-600 text-white p-2 rounded-lg" onClick={handleFinalBuy}>Finalizar</button>
             </form>
         ) : (
              <button className="bg-blue-500 p-3 hover:border-solid hover:border-blue-950" onClick={handleFinishBuy}>Concluir compra</button>

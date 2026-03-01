@@ -3,7 +3,7 @@ import { useState } from "react";
 
 export default function CreateNew({ProductCreated}){
 
-const [data,setData] = useState({"nome":"","preco":"",'descricao':'','setor':'',"img":""})
+const [data,setData] = useState({"nome":"","preco":Number,'descricao':'','setor':'',"img":""})
 
 function handleChange(e){
     const {name,value} = e.target;
@@ -20,7 +20,7 @@ function handleSubmit(e){
 
         ProductCreated(data)
 
-        setData({'nome':'','preco':'','descricao':'','setor':'','img':''})
+        setData({'nome':'','preco':Number,'descricao':'','setor':'','img':''})
 
 }
     return (
