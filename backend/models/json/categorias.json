@@ -1,7 +1,12 @@
 {
     "categorias":[{
-   "nome":"alimentos",
-   "descrição":"",
-   "exemplos":"" 
+    "nome":"alimentos",
+    "descrição":"",
+    "exemplos":"frutas,carnes,legumes,doces,bebidas,frios" 
+},
+{
+    "nome":"tecnologia",
+    "descrição":"Equipamentos tecnológicos importantes",
+    "exemplos":""
 }]
 }
