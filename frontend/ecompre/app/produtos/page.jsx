@@ -52,20 +52,20 @@ async function handleCreate(data){
             <h3 className="font-bold text-4xl text-center">Categorias</h3>
             <div className="relative w-full justify-center md:flex gap-1  md:justify-items-center ">
     
-                <a href="#"><img src="/categoria_eletronicos.webp" alt="eletronicos" id="categories" /></a>
-                <a href="#"><img src="/categoria_musica_audio.webp" alt="musica_audio" id="categories"/></a>
-                <a href="#"><img src="/receitas-de-uma-panela-so.jpg" alt="comida" id="categories"/></a>
-                <a href="#"><img src="/categoria-livros.jpg" alt="livros" id="categories"/></a>
-                <a href="#"><img src="/categoria_moda.webp" alt="moda" id="categories"/></a>
-                <a href="#"><img src="/categoria_toys.jpg" alt="brinquedos" id="categories"/></a>
+                <a href="/produtos/tecnologia"><img src="/categoria_eletronicos.webp" alt="eletronicos" id="categories" /></a>
+                <a href="/produtos/musica_audio"><img src="/categoria_musica_audio.webp" alt="musica_audio" id="categories"/></a>
+                <a href="/produtos/alimentos"><img src="/receitas-de-uma-panela-so.jpg" alt="comida" id="categories"/></a>
+                <a href="/produtos/livros"><img src="/categoria-livros.jpg" alt="livros" id="categories"/></a>
+                <a href="/produtos/moda"><img src="/categoria_moda.webp" alt="moda" id="categories"/></a>
+                <a href="/produtos/brinquedos"><img src="/categoria_toys.jpg" alt="brinquedos" id="categories"/></a>
             </div>
             </article><br /><br />
 
 
             <div className="grid-cols-1 space-y-6 md:flex md:space-x-28 flex-wrap sm:items-center">
-                <div className=' bg-black w-80 p-5'>
+                <div className=' bg-black w-100 p-5'>
                      <h3 className="text-2xl font-bold">Em destaque em Moda</h3>
-                    <article  id="cath" className=" gap-4">
+                    <article  id="cath" className="flex-wrap gap-5">
                       <img src="/destaque_moda_listrada.jpg" alt="camisa_listrada" />
                       <img src="/destaque_moda_amarela.webp" alt="camisa_amarela" />
                       <img src="/destaque_moda_agasalho.jpg" alt="adidas" />
@@ -98,7 +98,7 @@ async function handleCreate(data){
             </div>
     </main><br />
     <footer className="bg-gray-700 max-w-12/12"><br /><br /><br />
-    <a href="/sobre">Conheça-nos melhor</a>
+    <a href="/sobre" className="items-center font-bold text-3xl ">Conheça-nos melhor</a>
     </footer>
     
    </> 
