@@ -1,5 +1,5 @@
 ## Ecompre - Projeto de um ecommerce com NextJS
-<img src="/frontend/ecompre/app/public/logo" width="60%" height="50%">
+<img src="/frontend/ecompre/app/public/logo_ecompre.png" width="60%" height="50%">
 
 Ecompre📦
 Realizei esse projeto para reforçar e aprender um pouco mais dos conceitos do Framework NextJS, , login(admin, usuário), e visualização de produtos cadastrados no banco de dados. Cada página foi construída
