@@ -30,4 +30,4 @@ Back-end
 - Agora que está na pasta frontend, digite ` cd ecompre `.
 - rode o comando `npm run dev `, e logo após abra o link localhost:3000 no navegador
 
-<img src='/frontend_ecompre.png'>
+<img src='/frontend/ecompre/public/frontend_ecompre.png'>
