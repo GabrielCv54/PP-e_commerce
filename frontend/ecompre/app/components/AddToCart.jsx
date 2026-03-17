@@ -16,10 +16,13 @@ export default function Cart({productsAdded}){
     }
 
     function handleFinalBuy(){
+       if(product){
        localStorage.removeItem('produto',[])
        alert("Compra confirmada✅!! Voltando para página principal!!")
         router.push('/produtos')
     }
+
+}
 
     
   useEffect(() => {
@@ -73,7 +76,7 @@ export default function Cart({productsAdded}){
                     <option value="Cheque">Cheque</option>
                 </select>
 
-                <button className="bg-sky-600 text-white p-2 rounded-lg" onClick={handleFinalBuy}>Finalizar</button>
+                <button type="button" className="bg-sky-600 text-white p-2 rounded-lg" onClick={handleFinalBuy}>Finalizar</button>
             </form>
         ) : (
              <button className="bg-blue-500 p-3 hover:border-solid hover:border-blue-950" onClick={handleFinishBuy}>Concluir compra</button>
