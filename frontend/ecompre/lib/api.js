@@ -34,6 +34,9 @@ export const loginClients = async(data) => api.post("/clientes/login",data)
 export const registerClients = async(data) => api.post('/clientes/cadastro',data)
 
 // Fornecedores
+export const getSuppliers = async() => {const response = await api.get('fornecedores'); return response.data}
+export const getSupplier = async(name) => {const response = await api.get(`/fornecedores/${name}`)}
+export const registerSupplier = async(data) => api.post('/fornecedores',data) 
 
 
 
