@@ -3,7 +3,7 @@ from config import db
 class Fornecedor(db.Model):
     __tablename__ = 'fornecedor'
 
-    id = db.Column(db.Integer,primary_key=True,nullable=False)
+    id = db.Column(db.Integer,primary_key=True)
     nome_empresa = db.Column(db.String(150),nullable=False)
     tipo_fornecimento = db.Column(db.String(150),nullable=False)
     preco_forn = db.Column(db.Numeric(10,2),nullable=False)
@@ -18,7 +18,7 @@ class Fornecedor(db.Model):
         self.logo_empresa = logo_empresa
 
     def dici(self):
-        return {'nome_empresa':self.nome_empresa,'tipo_fornecimento':self.tipo_fornecimento,'preco_forn':self.preco_forn,'is_iso9001':self.is_iso9001}
+        return {"id":self.id,"nome_empresa":self.nome_empresa,"tipo_fornecimento":self.tipo_fornecimento,"preco_forn":self.preco_forn,"logo_empresa":self.logo_empresa,"is_iso9001":self.is_iso9001}
 
 class SupplierNotFound(Exception):
     pass
